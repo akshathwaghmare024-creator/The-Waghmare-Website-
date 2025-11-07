@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waghmare Clan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Poppins',sans-serif; overflow-x:hidden; }
+
+/* Sections */
+section {
+  width:100%; height:100vh;
+  display:none; flex-direction:column; justify-content:center; align-items:center;
+  position:absolute; top:0; left:0;
+  transition: opacity 0.5s ease-in-out;
+}
+section.active { display:flex; opacity:1; z-index:5; }
+
+/* Background image + overlay */
+.background {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background-position:center center;
+  background-size:cover;
+  z-index:1;
+}
+.background::after {
+  content:'';
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.4);
+}
+
+/* Content wrapper above overlay */
+.content-wrapper {
+  position:relative; z-index:10;
+  width:100%; height:100%;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center;
+}
+
+/* Navigation */
+nav {
+  position:absolute; top:20px; right:50px; z-index:10;
+  font-weight:600; color:#fff; font-size:1.1em; letter-spacing:1px;
+}
+nav span {
+  margin:0 10px; cursor:pointer; transition:color 0.3s;
+}
+nav span:hover { color:#FFD700; }
+
+/* Logo */
+.logo {
+  font-family:'Playfair Display',serif;
+  font-size:6em; font-weight:900; color:#FFD700;
+  text-shadow:0 0 12px #000; display:flex; align-items:center; gap:10px;
+  margin-bottom:40px;
+}
+.logo .om { font-size:1.5em; }
+
+/* Home Section */
+#homeSection .main-heading {
+  font-family:'Playfair Display',serif;
+  font-size:6em; color:#FFD700; font-weight:900;
+  text-shadow:0 0 15px rgba(255,215,0,0.7),0 0 25px rgba(0,0,0,0.5);
+  line-height:1.2;
+  margin-bottom:40px;
+}
+#homeSection .main-heading span { display:block; }
+#homeSection .content {
+  max-width:900px; color:#fff; font-weight:700;
+  font-size:2.5em; line-height:2.2em; margin:0 20px; text-align:justify; text-align-last:left;
+}
+#homeSection .content p { margin-bottom:30px; }
+
+/* Section boxes (About, Origin, Existence, Community) */
+.section-box {
+  background: rgba(0,0,0,0.55);
+  padding:40px; border-radius:20px;
+  width:90%; max-width:1200px;
+  height:90%; min-height:100%;
+  overflow-y:auto;
+  margin:0 auto;
+  flex-shrink:0;
+}
+.section-heading {
+  font-family:'Playfair Display', serif;
+  font-size:5em; color:#FFD700; text-align:center; margin-bottom:50px;
+}
+.section-text { color:#fff; font-size:2.5em; line-height:2.2em; text-align:justify; }
+.section-text p { margin-bottom:50px; opacity:0; transform:translateY(20px); transition: all 0.6s ease-in-out; }
+.section-text p.visible { opacity:1; transform:translateY(0); }
+
+/* Fade-in animation */
+.fade-in { opacity:0; transform:translateY(30px); animation: fadeInUp 0.7s forwards; }
+@keyframes fadeInUp { 0%{opacity:0; transform:translateY(30px);} 100%{opacity:1; transform:translateY(0);} }
+
+/* Scrollbar for sections */
+.section-box::-webkit-scrollbar { width:12px; }
+.section-box::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.6); border-radius:6px; }
+.section-box::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius:6px; }
+
+@media (max-width:768px){
+  .logo{ font-size:3em; margin-bottom:20px; }
+  #homeSection .main-heading{ font-size:3em; }
+  #homeSection .content{ font-size:1.4em; line-height:2em; max-width:90%; }
+  nav{ right:20px; top:15px; font-size:0.95em; }
+  .section-heading{ font-size:3em; margin-bottom:40px; }
+  .section-text{ font-size:1.6em; line-height:2em; }
+  .section-box{ padding:30px 20px; height:85%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HOME SECTION -->
+<section id="homeSection" class="active">
+  <div class="background" style="background-image:url('Waghmare.png');"></div>
+  <div class="content-wrapper">
+    <div class="logo">WAGHMARE <span class="om">🕉️</span></div>
+    <nav>
+      <span onclick="switchSection('homeSection')">Home</span> | 
+      <span onclick="switchSection('aboutSection')">About</span> | 
+      <span onclick="switchSection('originSection')">Origin</span> | 
+      <span onclick="switchSection('existenceSection')">Existence</span> | 
+      <span onclick="switchSection('communitySection')">Community</span>
+    </nav>
+    <div class="main-heading">
+      <span>The</span>
+      <span>Waghmares✨</span>
+    </div>
+    <div class="content">
+      <p>If destiny brought you here, it’s because the spirit of the Waghmare runs in your blood — strength, pride, and unity.</p>
+      <p>Together, we learn, connect, and carry forward the name Waghmare with pride.</p>
+      <p>Wishing You Courage, Honour, and the Best of Luck! ⚔️</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="aboutSection">
+  <div class="background" style="background-image:url('Akshath.png');"></div>
+  <div class="content-wrapper">
+    <nav>
+      <span onclick="switchSection('homeSection')">Home</span> | 
+      <span onclick="switchSection('aboutSection')">About</span> | 
+      <span onclick="switchSection('originSection')">Origin</span> | 
+      <span onclick="switchSection('existenceSection')">Existence</span> | 
+      <span onclick="switchSection('communitySection')">Community</span>
+    </nav>
+    <div class="section-box">
+      <h1 class="section-heading">Introduction</h1>
+      <div class="section-text">
+        <p>The Waghmare clan, a lineage etched with valor, wisdom, and unity, has journeyed through the sands of time with an unyielding spirit. Born of courage and guided by honor, every member carries the legacy of strength in their veins.</p>
+        <p>Throughout the ages, the Waghmares have cultivated not only courage but also wisdom, a deep understanding of the natural world, and a profound respect for knowledge and art. Our ancestors sat beneath the stars, exchanging tales and teachings that shaped the minds and hearts of generations.</p>
+        <p>The Waghmare legacy is not measured merely in battles won or territories guarded, but in the indomitable spirit that flows through the veins of every member. We honor those who came before us, whose sacrifices laid the foundation for the life we cherish today.</p>
+        <p>In every Waghmare, the spirit of learning, leadership, and resilience thrives. Each generation embraces these virtues, expanding the family’s heritage and creating a foundation for future endeavors. The fire of courage burns bright in the heart of every member.</p>
+        <p>The stories and rituals of the Waghmares are not just traditions—they are guiding lights that inform daily life, reminding us of our duties to our family, community, and the greater world. Honor, unity, and compassion are principles woven into our very being.</p>
+        <p>From ancient lineage to modern achievements, the Waghmares have adapted without losing their core essence. Whether in thought, word, or deed, the name carries a weight of responsibility and pride, inspiring all who bear it to live fully and nobly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORIGIN SECTION -->
+<section id="originSection">
+  <div class="background" style="background-image:url('Origin.png');"></div>
+  <div class="content-wrapper">
+    <nav>
+      <span onclick="switchSection('homeSection')">Home</span> | 
+      <span onclick="switchSection('aboutSection')">About</span> | 
+      <span onclick="switchSection('originSection')">Origin</span> | 
+      <span onclick="switchSection('existenceSection')">Existence</span> | 
+      <span onclick="switchSection('communitySection')">Community</span>
+    </nav>
+    <div class="section-box">
+      <h1 class="section-heading">Origin</h1>
+      <div class="section-text">
+        <p>The Waghmares trace their origin to the ancient lands, where the first forebears embraced valor, resilience, and leadership. Legends say that every decision made by the clan shaped the communities around them.</p>
+        <p>With a deep connection to the earth and its cycles, the Waghmares cultivated traditions, festivals, and ceremonies that honored both ancestors and the natural world. Their stories passed down wisdom through generations.</p>
+        <p>Origin marked the beginning of a legacy that balanced strength with compassion. Every member inherited the responsibility to uphold dignity and contribute meaningfully to society.</p>
+        <p>The early generations of Waghmares demonstrated ingenuity and foresight, building foundations for social structures, cultural practices, and ethical principles that endured through centuries. Each act laid the groundwork for prosperity and unity.</p>
+        <p>Through trials, wars, and migrations, the clan adapted while maintaining its core essence. The narrative of the Waghmares became intertwined with the lands they inhabited, creating a story of resilience and continuity.</p>
+        <p>Every member today inherits not only the name but also the wisdom of forebears, ensuring that origin remains a living, breathing guide for life, responsibility, and honor in all endeavors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXISTENCE SECTION -->
+<section id="existenceSection">
+  <div class="background" style="background-image:url('Existence.png');"></div>
+  <div class="content-wrapper">
+    <nav>
+      <span onclick="switchSection('homeSection')">Home</span> | 
+      <span onclick="switchSection('aboutSection')">About</span> | 
+      <span onclick="switchSection('originSection')">Origin</span> | 
+      <span onclick="switchSection('existenceSection')">Existence</span> | 
+      <span onclick="switchSection('communitySection')">Community</span>
+    </nav>
+    <div class="section-box">
+      <h1 class="section-heading">Existence</h1>
+      <div class="section-text">
+        <p>The existence of the Waghmares is defined by their unwavering values, which have persisted despite challenges and change. The clan embodies resilience in thought, word, and action.</p>
+        <p>Existence is a celebration of shared culture, stories, and unity. Through art, music, and rituals, members express their heritage and strengthen bonds across generations.</p>
+        <p>Every Waghmare carries the lineage forward, embracing both the responsibilities and privileges of belonging to a family of courage, wisdom, and integrity.</p>
+        <p>Daily life within the Waghmare community reflects harmony, discipline, and mutual respect. Each member contributes meaningfully, sustaining traditions while navigating modern complexities.</p>
+        <p>Celebrations, commemorations, and storytelling ensure that existence is a continuous thread connecting past, present, and future, providing identity, strength, and guidance for all.</p>
+        <p>Through education, mentorship, and shared experiences, the clan maintains its relevance and vibrancy, proving that existence is not merely surviving, but thriving with purpose, honor, and unity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY SECTION -->
+<section id="communitySection">
+  <div class="background" style="background-image:url('Community.png');"></div>
+  <div class="content-wrapper">
+    <nav>
+      <span onclick="switchSection('homeSection')">Home</span> | 
+      <span onclick="switchSection('aboutSection')">About</span> | 
+      <span onclick="switchSection('originSection')">Origin</span> | 
+      <span onclick="switchSection('existenceSection')">Existence</span> | 
+      <span onclick="switchSection('communitySection')">Community</span>
+    </nav>
+    <div class="section-box">
+      <h1 class="section-heading">Community</h1>
+      <div class="section-text">
+        <p>The Waghmare community thrives on collaboration, mutual respect, and shared celebration of heritage. Each member contributes to the welfare and pride of the clan.</p>
+        <p>Gatherings, discussions, and mentorship are central to the community’s vitality. Through these, wisdom is transferred, bonds are strengthened, and young members are guided to uphold the legacy.</p>
+        <p>Community reflects the heart of the Waghmares: unity in diversity, strength in togetherness, and honor in every action. Being part of it is both a privilege and a responsibility.</p>
+        <p>From festivals to storytelling sessions, every community interaction reinforces shared values, loyalty, and understanding, nurturing a sense of belonging and purpose.</p>
+        <p>The Waghmare community embraces both tradition and innovation, ensuring continuity of identity while adapting to changing times, challenges, and opportunities.</p>
+        <p>Ultimately, the clan’s cohesion, mutual support, and collective wisdom ensure that the Waghmare legacy endures, thriving across generations with pride, strength, and unity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+let currentSection='homeSection';
+function switchSection(target){
+  if(currentSection===target) return;
+  const current = document.getElementById(currentSection);
+  const next = document.getElementById(target);
+
+  current.style.transition='opacity 0.5s ease-in-out';
+  current.style.opacity='0';
+
+  setTimeout(()=>{
+    current.style.display='none';
+    next.style.display='flex';
+    next.style.opacity='0';
+
+    setTimeout(()=>{
+      next.style.transition='opacity 0.5s ease-in-out';
+      next.style.opacity='1';
+      currentSection=target;
+
+      // Fade in paragraphs if not Home
+      if(target!=='homeSection'){
+        const paragraphs = next.querySelectorAll('.section-text p');
+        paragraphs.forEach((p,i)=>{
+          setTimeout(()=>{ p.classList.add('visible'); }, i*300);
+        });
+      }
+    },50);
+  },500);
+}
+</script>
+</body>
+</html>
